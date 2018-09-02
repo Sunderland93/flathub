@@ -1,0 +1,36 @@
+{
+    "id": "org.otter_browser.Otter",
+    "branch": "master",
+    "runtime": "org.kde.Platform",
+    "runtime-version": "5.11",
+    "sdk": "org.kde.Sdk",
+    "rename-icon": "otter-browser",
+    "rename-desktop-file": "otter-browser.desktop",
+    "rename-appdata-file": "otter-browser.appdata.xml",
+    "command": "otter-browser",
+    "finish-args": [
+          "--share=ipc",
+          "--share=network",
+          "--socket=x11",
+          "--socket=pulseaudio",
+          "--device=dri",
+          "--filesystem=host",
+          "--system-talk-name=org.freedesktop.GeoClue2"
+    ],
+    
+    "modules": [
+              {
+                    "buildsystem": "cmake",
+                    "name": "otter-browser",
+                    "sources": [
+                            {
+                                   "type": "git",
+                                   "url": "https://github.com/OtterBrowser/otter-browser.git"
+                            }
+                        ],
+                        "post-install": [
+                            "install -Dm644 ./packaging/otter-browser.appdata.xml /app/share/metainfo/org.otter_browser.Otter.appdata.xml"
+                        ]
+                }
+        ]
+}
